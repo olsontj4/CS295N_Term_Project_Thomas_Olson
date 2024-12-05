@@ -1,13 +1,13 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuizCreator.Models;
+using System.Diagnostics;
 
 namespace QuizCreator.Controllers
 {
-    public class HomeController : Controller
+    public class QuizController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<QuizController> _logger;
+        public QuizController(ILogger<QuizController> logger)
         {
             _logger = logger;
         }
@@ -15,14 +15,13 @@ namespace QuizCreator.Controllers
         {
             return View();
         }
-        public IActionResult Privacy()
+        public IActionResult Creator()
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult UserPage(AppUser user)
+        [HttpPut]
+        public IActionResult Creator(Quiz quiz)
         {
-            List<Quiz> quizzes = new();
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
