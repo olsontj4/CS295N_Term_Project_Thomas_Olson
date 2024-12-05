@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuizCreator.Models
 {
     public class AppUser
     {
+        public int Id { get; set; }
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string UserName { get; set; }
     }
 }

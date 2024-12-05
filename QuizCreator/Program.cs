@@ -9,6 +9,7 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddTransient<IRepo, Repo>();
 
         var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
         builder.Services.AddDbContext<AppDbContext>(options =>
@@ -33,6 +34,14 @@ internal class Program
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        // Get a DbContext object
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider
+                .GetRequiredService<AppDbContext>();
+            SeedData.Seed(dbContext);
+        }
 
         app.Run();
     }

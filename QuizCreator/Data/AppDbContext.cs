@@ -10,6 +10,7 @@ namespace QuizCreator.Data
            DbContextOptions<AppDbContext> options) : base(options) { }
         // one DbSet for each domain model class
         public DbSet<Quiz> Quizzes { get; set; }
+        //public DbSet<Question> Questions { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuizCreator.Models
 {
@@ -11,9 +12,14 @@ namespace QuizCreator.Models
         [Required]
         public bool MultipleAnswers { get; set; }
         [Required]
-        public List<string> Q {  get; set; }
+        public string Q {  get; set; }
         [Required]
+        [NotMapped]
         public List<string> A { get; set; }
-        public List<string>? UserA { get; set; }
+        [NotMapped]
+        public List<bool>? UserA { get; set; }
+        [Required]
+        [NotMapped]
+        public List<bool> AKey { get; set; }
     }
 }

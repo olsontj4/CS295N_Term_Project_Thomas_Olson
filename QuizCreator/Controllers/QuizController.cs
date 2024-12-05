@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizCreator.Data;
 using QuizCreator.Models;
 using System.Diagnostics;
 
@@ -6,10 +7,10 @@ namespace QuizCreator.Controllers
 {
     public class QuizController : Controller
     {
-        private readonly ILogger<QuizController> _logger;
-        public QuizController(ILogger<QuizController> logger)
+        private readonly IRepo repo;
+        public QuizController(IRepo r)
         {
-            _logger = logger;
+            repo = r;
         }
         public IActionResult Index()
         {
@@ -20,8 +21,18 @@ namespace QuizCreator.Controllers
             return View();
         }
         [HttpPut]
-        public IActionResult Creator(Quiz quiz)
+        public IActionResult CreatorUpdate(Quiz quiz)
         {
+            if (quiz.Page == 0)
+            {
+                return View(quiz);
+            }
+            return View(quiz);
+        }
+        [HttpPost]
+        public IActionResult CreatorSubmit(Quiz quiz)
+        {
+            repo.StoreQuiz(quiz);
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
