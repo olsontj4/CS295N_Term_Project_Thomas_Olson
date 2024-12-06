@@ -104,8 +104,7 @@ namespace QuizCreator.Migrations
                     EndResultId = table.Column<int>(type: "int", nullable: true),
                     AppUserId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    IsComplete = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Page = table.Column<int>(type: "int", nullable: false)
+                    IsComplete = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {

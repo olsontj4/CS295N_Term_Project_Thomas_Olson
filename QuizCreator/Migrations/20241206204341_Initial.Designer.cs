@@ -11,7 +11,7 @@ using QuizCreator.Data;
 namespace QuizCreator.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241206043934_Initial")]
+    [Migration("20241206204341_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -184,9 +184,6 @@ namespace QuizCreator.Migrations
 
                     b.Property<bool>("IsComplete")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("Page")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

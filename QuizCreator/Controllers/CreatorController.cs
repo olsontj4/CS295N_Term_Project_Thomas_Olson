@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuizCreator.Data;
 using QuizCreator.Models;
+using QuizCreator.ViewModels;
 
 namespace QuizCreator.Controllers
 {
@@ -16,7 +17,7 @@ namespace QuizCreator.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Creator(Quiz quiz)
+        public IActionResult Creator(QuizVM quiz)
         {
             if (!ModelState.IsValid)
             {
@@ -25,7 +26,7 @@ namespace QuizCreator.Controllers
                 return View("Creator", quiz);
             }
             return View("Creator", quiz);
-            repo.StoreQuiz(quiz);
+            repo.StoreQuiz(quiz.Quiz);  //TODO: Write code to store quiz in DB.
             return View();
         }
     }

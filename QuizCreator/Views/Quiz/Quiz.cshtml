@@ -9,7 +9,7 @@
     <hr />
 </div>
 <article class="container">
-    @if(Model.Quiz.Page == 0)
+    @if(Model.Page == 0)
     {
         <form asp-controller="Quiz" asp-action="QuizQuestion">
             <h1>@Model.Quiz.Title</h1>
@@ -18,20 +18,26 @@
             <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
         </form>
     }
-    else if(false)
+    else if (Model.Page > Model.Quiz.Questions.Count)
     {
-
+        <div>
+            <h1>@Model.Quiz.EndResult.EndTitles[0].EndResultString</h1>
+            <h3>@Model.Quiz.EndResult.EndMessages[0].EndResultString</h3>
+            <a class="btn btn-primary" asp-controller="Quiz" asp-action="Index">Play More Quizzes!</a>
+        </div>
     }
     else
     {
         <form asp-controller="Quiz" asp-action="QuizQuestion">
-            <h1>@Model.Quiz.Questions[Model.Quiz.Page - 1].Q</h1>
+            <h1>@Model.Quiz.Questions[Model.Page - 1].Q</h1>
             @foreach (var a in @Model.AnswerInputs)
             {
-                <input asp-for="@Model.AnswerInputs[a.Key]" name="" type="radio" value="@a.Value">@a.Key
+                <input class="form-check-input" asp-for="@Model.AnswerInputs[a.Key]" name="Model.Quiz.Questions[Model.Page - 1].UserA" type="radio" value="">
+                <label class="form-check-label" asp-for="@Model.AnswerInputs[a.Key]">@a.Key</label>
+                <br />
             }
             <input asp-for="@Model.Quiz.Id" hidden value="@Model.Quiz.Id" />
-            <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="@(Model.Quiz.Page + 1)">Next question -></button>
+            <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="@(Model.Page + 1)">Next question -></button>
         </form>
     }
 </article>

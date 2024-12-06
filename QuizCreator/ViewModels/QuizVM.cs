@@ -6,5 +6,6 @@ namespace QuizCreator.ViewModels
     {
         public Quiz? Quiz { get; set; }
         public Dictionary<string, bool>? AnswerInputs { get; set; } = new();
+        public int Page { get; set; }
     }
 }

@@ -20,6 +20,5 @@ namespace QuizCreator.Models
         public AppUser? AppUser { get; set; }
         public DateTime? Date { get; set; }
         public bool IsComplete { get; set; }
-        public int Page { get; set; }
     }
 }
