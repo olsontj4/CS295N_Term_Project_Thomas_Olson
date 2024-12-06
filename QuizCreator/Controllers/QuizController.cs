@@ -26,14 +26,18 @@ namespace QuizCreator.Controllers
             vm.Quiz = quiz;
             return View(vm);
         }
-        public IActionResult QuizQuestion([FromForm]Quiz quiz)
+        public IActionResult QuizQuestion([FromForm]QuizVM quizVM)
         {
-            int page = quiz.Page;
-            quiz = repo.GetQuizById(quiz.Id);
-            quiz.Page = page;
             QuizVM vm = new QuizVM();
-            vm.Quiz = quiz;
-            var answers = quiz.Questions[page - 1].A;
+            int page = quizVM.Page;
+            quizVM.Quiz = repo.GetQuizById(quizVM.Quiz.Id);
+            vm.Page = page;
+            vm.Quiz = quizVM.Quiz;
+            if (page > vm.Quiz.Questions.Count)  //End results.
+            {
+                return View("Quiz", vm);
+            }
+            List<A> answers = quizVM.Quiz.Questions[page - 1].A;
             foreach(var a in answers)
             {
                 vm.AnswerInputs.Add(a.AString, false);
