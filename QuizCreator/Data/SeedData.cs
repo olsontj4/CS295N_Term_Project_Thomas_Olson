@@ -20,6 +20,7 @@ namespace QuizCreator.Data
                     Type = "Trivia",
                     AppUser = user1,
                     Date = DateTime.Parse("12/04/2024"),
+                    IsComplete = true,
                     Questions = new List<Question>()
                     {
                         new Question()

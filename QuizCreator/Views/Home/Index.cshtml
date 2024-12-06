@@ -1,13 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Quiz>
 <div class="text-center">
     <h1 class="display-4">Thomas' Quiz Creator</h1>
     <p>The best quiz creator in the universe!</p>
 </div>
 <article class="container">
     <h2>Featured Quizes:</h2>
-    <div>
-
+    <div class="card bg-light-subtle">
+        <h3>@Model[0].Title</h3>
+        <p>@Model[0].Description</p>
+        <a asp-controller="Quiz" asp-action="Quiz" asp-route-id="@Model[0].Id" type="submit" class="stretched-link"></a>
     </div>
 </article>

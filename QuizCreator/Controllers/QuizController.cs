@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using QuizCreator.Data;
 using QuizCreator.Models;
 using System.Diagnostics;
@@ -14,26 +15,18 @@ namespace QuizCreator.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var quizzes = repo.GetAllQuizzes();
+            return View(quizzes);
         }
-        public IActionResult Creator()
+        public IActionResult Quiz(int id)
         {
-            return View();
-        }
-        [HttpPut]
-        public IActionResult CreatorUpdate(Quiz quiz)
-        {
-            if (quiz.Page == 0)
-            {
-                return View(quiz);
-            }
+            var quiz = repo.GetQuizById(id);
             return View(quiz);
         }
         [HttpPost]
-        public IActionResult CreatorSubmit(Quiz quiz)
+        public IActionResult QuizQuestion([FromForm]Quiz quiz)
         {
-            repo.StoreQuiz(quiz);
-            return View();
+            return View("Quiz", quiz);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

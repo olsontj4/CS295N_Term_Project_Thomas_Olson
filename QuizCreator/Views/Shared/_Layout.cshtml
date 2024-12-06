@@ -26,7 +26,7 @@
                             <a class="nav-link text-dark" asp-controller="Quiz" asp-action="Index">Quizzes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Quiz" asp-action="Creator">Create a Quiz</a>
+                            <a class="nav-link text-dark" asp-controller="Creator" asp-action="Creator">Create a Quiz</a>
                         </li>
                     </ul>
                 </div>
@@ -47,6 +47,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

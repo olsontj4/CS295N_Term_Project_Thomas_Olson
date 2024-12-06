@@ -7,10 +7,10 @@ namespace QuizCreator.Models
         public int Id { get; set; }
         public string? ImageUrl { get; set; }
         [Required]
-        [Range(1, 100)]
+        [StringLength(100)]
         public string Title { get; set; }
         [Required]
-        [Range(1, 200)]
+        [StringLength(200)]
         public string Description { get; set; }
         [Required]
         public string Type { get; set; }

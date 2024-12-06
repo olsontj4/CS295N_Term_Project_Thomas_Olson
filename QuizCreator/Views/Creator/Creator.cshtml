@@ -1,0 +1,62 @@
+﻿@*
+    TODO: Use images in quizzes.
+*@
+@{
+    ViewData["Title"] = "Create a Quiz:";
+}
+@model Quiz
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+</div>
+<article class="container">
+    <div class="border-2 border-dark">
+        @if (Model == null){
+            <form action="Creator" method="post">
+                <!--p class="form-label">Image:</p>
+                <input class="form-control" type="image" value="" /-->
+                <p class="form-label">Title:</p>
+                <input asp-for="Title" class="form-control" type="text" value="" placeholder="Enter a title..." />
+                <span asp-validation-for="Title" class="text-danger"></span>
+
+                <p class="form-label">Description:</p>
+                <input asp-for="Description" class="form-control" type="text" value="" placeholder="Enter a description..." />
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+                <p class="form-label">Type:</p>
+                <select asp-for="Type" class="form-select">
+                    <option value="" selected hidden>Select a quiz type...</option>
+                    <option value="Trivia">Trivia</option>
+                    <option disabled>Personality</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+                <br />
+                <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
+            </form>
+        }
+        else if (Model.Page == 0)
+        {
+            <form action="Creator" method="post">
+                <!--p class="form-label">Image:</p>
+                <input class="form-control" type="image" value="" /-->
+                <p class="form-label">Title:</p>
+                <input asp-for="Title" class="form-control" type="text" value="@Model.Title" placeholder="Enter a title..." />
+                <span asp-validation-for="Title" class="text-danger"></span>
+
+                <p class="form-label">Description:</p>
+                <input asp-for="Description" class="form-control" type="text" value="@Model.Description" placeholder="Enter a description..." />
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+                <p class="form-label">Type:</p>
+                <select asp-for="Type" class="form-select">
+                    <option value="" selected hidden>Select a quiz type...</option>
+                    <option value="Trivia">Trivia</option>
+                    <option disabled>Personality</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+                <br />
+                <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
+            </form>
+        }
+    </div>
+</article>

@@ -1,0 +1,20 @@
+﻿@model Quiz
+@{
+    var title = Model.Title;
+    ViewData["Title"] = title;
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+</div>
+<article class="container">
+    @if (Model.Page == 0)
+    {
+        <form asp-controller="Quiz" asp-action="QuizQuestion" method="post">
+            <h1>@Model.Title</h1>
+            <h3>@Model.Description</h3>
+            <input asp-for="@Model.Title" hidden value="@Model.Title"/>
+            <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
+        </form>
+    }
+</article>

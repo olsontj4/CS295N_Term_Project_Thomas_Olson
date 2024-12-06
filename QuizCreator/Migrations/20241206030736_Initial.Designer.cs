@@ -11,7 +11,7 @@ using QuizCreator.Data;
 namespace QuizCreator.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241205032744_Initial")]
+    [Migration("20241206030736_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -100,7 +100,8 @@ namespace QuizCreator.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
@@ -113,7 +114,8 @@ namespace QuizCreator.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Type")
                         .IsRequired()

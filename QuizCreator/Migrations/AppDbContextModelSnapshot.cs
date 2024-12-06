@@ -97,7 +97,8 @@ namespace QuizCreator.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
@@ -110,7 +111,8 @@ namespace QuizCreator.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Type")
                         .IsRequired()
