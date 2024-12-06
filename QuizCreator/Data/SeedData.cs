@@ -25,47 +25,44 @@ namespace QuizCreator.Data
                     {
                         new Question()
                         {
-                            QuizId = 1,
                             Q = "Are you in the Kool Kids Klub?",
-                            A = new List<string>()
+                            A = new()
                             {
-                                "Yes.",
-                                "No."
+                                new() { AString = "Yes." },
+                                new() { AString = "No." }
                             },
-                            AKey = new List<bool>()
+                            AKey = new()
                             {
-                                true,
-                                false
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false }
                             },
                             MultipleAnswers = false
                         },
                         new Question()
                         {
-                            QuizId = 1,
                             Q = "Do you want to be in the Kool Kids Klub?",
-                            A = new List<string>()
+                            A = new()
                             {
-                                "Yes.",
-                                "No."
+                                new() { AString = "Yes." },
+                                new() { AString = "No." }
                             },
-                            AKey = new List<bool>()
+                            AKey = new()
                             {
-                                true,
-                                false
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false }
                             },
                             MultipleAnswers = false
                         },
                     },
-                    EndResults = new EndResults()
+                    EndResult = new EndResult()
                     {
-                        QuizId = 1,
-                        EndResult = new List<string>()
+                        EndTitles = new()
                         {
-                            "You are in the Kool Kids Klub!"
+                            new() { EndResultString = "You are in the Kool Kids Klub!" }
                         },
-                        EndMessage = new List<string>()
+                        EndMessages = new()
                         {
-                            "I knew you always were a Kool Kid."
+                            new() { EndResultString = "I knew you always were a Kool Kid." }
                         },
                         DisplayScore = false
                     }

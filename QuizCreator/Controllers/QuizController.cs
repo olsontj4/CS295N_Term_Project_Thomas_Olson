@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using QuizCreator.Data;
 using QuizCreator.Models;
+using QuizCreator.ViewModels;
 using System.Diagnostics;
 
 namespace QuizCreator.Controllers
@@ -21,12 +22,23 @@ namespace QuizCreator.Controllers
         public IActionResult Quiz(int id)
         {
             var quiz = repo.GetQuizById(id);
-            return View(quiz);
+            QuizVM vm = new QuizVM();
+            vm.Quiz = quiz;
+            return View(vm);
         }
-        [HttpPost]
         public IActionResult QuizQuestion([FromForm]Quiz quiz)
         {
-            return View("Quiz", quiz);
+            int page = quiz.Page;
+            quiz = repo.GetQuizById(quiz.Id);
+            quiz.Page = page;
+            QuizVM vm = new QuizVM();
+            vm.Quiz = quiz;
+            var answers = quiz.Questions[page - 1].A;
+            foreach(var a in answers)
+            {
+                vm.AnswerInputs.Add(a.AString, false);
+            }
+            return View("Quiz", vm);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

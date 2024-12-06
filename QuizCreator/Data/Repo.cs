@@ -14,7 +14,13 @@ namespace QuizCreator.Data
         {
             var quizzes = context.Quizzes
                 .Include(q => q.Questions)
-                .Include(q => q.EndResults)
+                .ThenInclude(q => q.A)
+                .Include(q => q.Questions)
+                .ThenInclude(q => q.AKey)
+                .Include(q => q.EndResult)
+                .ThenInclude(q => q.EndTitles)
+                .Include(q => q.EndResult)
+                .ThenInclude(q => q.EndMessages)
                 .Include(q => q.AppUser)
                 .ToList();
             return quizzes;
@@ -23,7 +29,13 @@ namespace QuizCreator.Data
         {
             var quiz = context.Quizzes
                 .Include(q => q.Questions)
-                .Include(q => q.EndResults)
+                .ThenInclude(q => q.A)
+                .Include(q => q.Questions)
+                .ThenInclude(q => q.AKey)
+                .Include(q => q.EndResult)
+                .ThenInclude(q => q.EndTitles)
+                .Include(q => q.EndResult)
+                .ThenInclude(q => q.EndMessages)
                 .Include(q => q.AppUser)
                 .Where(q => q.Id == id)
                 .SingleOrDefault();

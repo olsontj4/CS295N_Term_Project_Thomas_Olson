@@ -6,20 +6,32 @@ namespace QuizCreator.Models
     public class Question
     {
         public int Id { get; set; }
-        [Required]
-        public int QuizId { get; set; }
         public string? ImageUrl { get; set; }
         [Required]
         public bool MultipleAnswers { get; set; }
         [Required]
         public string Q {  get; set; }
         [Required]
-        [NotMapped]
-        public List<string> A { get; set; }
-        [NotMapped]
-        public List<bool>? UserA { get; set; }
+        public List<A> A { get; set; } = new();
+        public List<UserA>? UserA { get; set; }
         [Required]
-        [NotMapped]
-        public List<bool> AKey { get; set; }
+        public List<AKey> AKey { get; set; } = new();
+    }
+    public class A
+    {
+        public int Id { get; set; }
+        [Required]
+        public string AString { get; set; }
+    }
+    public class UserA
+    {
+        public int Id { get; set; }
+        public bool UserABool { get; set; }
+    }
+    public class AKey
+    {
+        public int Id { get; set; }
+        [Required]
+        public bool AKeyBool { get; set; }
     }
 }
