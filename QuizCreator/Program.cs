@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using QuizCreator.Data;
+using QuizTests;
 
 internal class Program
 {

@@ -18,7 +18,7 @@ namespace QuizCreator.Controllers
         {
             var quizzes = new List<Quiz>
             {
-                repo.GetQuizById(1)
+                repo.GetQuizById(2)
             };
             return View(quizzes);
         }

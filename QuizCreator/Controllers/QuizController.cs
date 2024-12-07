@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using QuizCreator.Data;
 using QuizCreator.Models;
+using QuizCreator.Tools;
 using QuizCreator.ViewModels;
 using System.Diagnostics;
 
@@ -16,33 +17,41 @@ namespace QuizCreator.Controllers
         }
         public IActionResult Index()
         {
-            var quizzes = repo.GetAllQuizzes();
+            var quizzes = repo.GetAllQuizzes().Where(q => q.IsComplete == true).ToList();
             return View(quizzes);
         }
-        public IActionResult Quiz(int id)
+        public IActionResult Index(string search)
+        {
+            var quizzes = repo.GetAllQuizzes().Where(q => q.IsComplete == true).ToList();
+            return View(quizzes);
+        }
+        public IActionResult Quiz(int id)  //First page of quiz.
         {
             var quiz = repo.GetQuizById(id);
             QuizVM vm = new QuizVM();
             vm.Quiz = quiz;
+            vm.UserA.Add("");
             return View(vm);
         }
-        public IActionResult QuizQuestion([FromForm]QuizVM quizVM)
+        public IActionResult QuizQuestion([FromForm]QuizVM quizVM)  //Each question in quiz.
         {
-            QuizVM vm = new QuizVM();
-            int page = quizVM.Page;
+            if (quizVM.AnswerInput != null)
+            {
+                quizVM.UserA.Add(quizVM.AnswerInput);
+            }
             quizVM.Quiz = repo.GetQuizById(quizVM.Quiz.Id);
-            vm.Page = page;
-            vm.Quiz = quizVM.Quiz;
-            if (page > vm.Quiz.Questions.Count)  //End results.
+            if (quizVM.Page > quizVM.Quiz.Questions.Count)  //End results.
             {
-                return View("Quiz", vm);
+                quizVM = Scoring.CheckAll(quizVM);
+                return View("Quiz", quizVM);
             }
-            List<A> answers = quizVM.Quiz.Questions[page - 1].A;
-            foreach(var a in answers)
+            List<A> answers = quizVM.Quiz.Questions[quizVM.Page - 1].A;
+            foreach (var a in answers)
             {
-                vm.AnswerInputs.Add(a.AString, false);
+
+                quizVM.AnswerInputs.Add(a.AString, false);
             }
-            return View("Quiz", vm);
+            return View("Quiz", quizVM);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

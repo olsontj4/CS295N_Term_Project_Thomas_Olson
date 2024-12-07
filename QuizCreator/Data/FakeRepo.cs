@@ -1,82 +1,31 @@
-﻿using QuizCreator.Models;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.EntityFrameworkCore;
+using QuizCreator.Data;
+using QuizCreator.Models;
+using System.Runtime.Intrinsics.X86;
 
-namespace QuizCreator.Data
+namespace QuizTests
 {
-    public class SeedData
+    public class FakeRepo : IRepo
     {
-        public static void Seed(AppDbContext context)
+        private List<Quiz> quizzes = new List<Quiz>();
+        public List<Quiz> GetAllQuizzes()
         {
-            if (!context.Quizzes.Any())  // this is to prevent adding duplicate data
+            throw new NotImplementedException();
+        }
+
+        public Quiz GetQuizById(int id)
+        {
+            AppUser user2 = new AppUser { UserName = "Than" };
+            return new Quiz()
             {
-                AppUser user1 = new AppUser { UserName = "Thomasj041" };  // Create User objects
-                AppUser user2 = new AppUser { UserName = "Than" };
-                AppUser logan = new AppUser { UserName = "Logan" };
-                context.AppUsers.Add(user1);  // Queue up user objects to be saved to the DB
-                context.SaveChanges();  // Saving adds UserId to User objects
-                Quiz quiz1 = new Quiz()
-                {
-                    Id = 1,
-                    Title = "Are you in the Kool Kids Klub?",
-                    Description = "Take this quiz to figure out if you're a true Kool Kid!",
-                    Type = "Trivia",
-                    AppUser = user1,
-                    Date = DateTime.Parse("12/04/2024"),
-                    IsComplete = true,
-                    Questions = new List<Question>()
-                    {
-                        new Question()
-                        {
-                            Q = "Are you in the Kool Kids Klub?",
-                            A = new()
-                            {
-                                new() { AString = "Yes." },
-                                new() { AString = "No." }
-                            },
-                            AKey = new()
-                            {
-                                new() { AKeyBool = true },
-                                new() { AKeyBool = false }
-                            }
-                        },
-                        new Question()
-                        {
-                            Q = "Do you want to be in the Kool Kids Klub?",
-                            A = new()
-                            {
-                                new() { AString = "Yes." },
-                                new() { AString = "No." }
-                            },
-                            AKey = new()
-                            {
-                                new() { AKeyBool = true },
-                                new() { AKeyBool = false }
-                            }
-                        },
-                    },
-                    EndResult = new EndResult()
-                    {
-                        EndTitles = new()
-                        {
-                            new() { EndResultString = "You are in the Kool Kids Klub!" }
-                        },
-                        EndMessages = new()
-                        {
-                            new() { EndResultString = "I knew you always were a Kool Kid. (There's no other option.)" }
-                        },
-                        DisplayScore = false
-                    }
-                };
-                Quiz quiz2 = new Quiz()
-                {
-                    Id = 2,
-                    Title = "Are you Than?",
-                    Description = "Take this quiz to figure out if you're a certified Than!",
-                    Type = "Trivia",
-                    AppUser = user2,
-                    Date = DateTime.Parse("12/06/2024"),
-                    IsComplete = true,
-                    Questions = new List<Question>()
+                Id = 2,
+                Title = "Are you Than?",
+                Description = "Take this quiz to figure out if you're a certified Than!",
+                Type = "Trivia",
+                AppUser = user2,
+                Date = DateTime.Parse("12/06/2024"),
+                IsComplete = true,
+                Questions = new List<Question>()
                     {
                         new Question()
                         {
@@ -151,27 +100,28 @@ namespace QuizCreator.Data
                             }
                         },
                     },
-                    EndResult = new EndResult()
-                    {
-                        EndTitles = new()
+                EndResult = new EndResult()
+                {
+                    EndTitles = new()
                         {
                             new() { EndResultString = "You're a certified Than!!" },
                             new() { EndResultString = "You might be a Than." },
                             new() { EndResultString = "You're not a Than." }
                         },
-                        EndMessages = new()
+                    EndMessages = new()
                         {
                             new() { EndResultString = "You're the coolest guy bestest guy." },
                             new() { EndResultString = "Not a fully fledged one, though." },
                             new() { EndResultString = "What's wrong with you?" }
                         },
-                        DisplayScore = false
-                    }
-                };
-                context.Quizzes.Add(quiz1);  // queues up a quiz to be added to the DB
-                context.Quizzes.Add(quiz2);
-                context.SaveChanges(); // stores all the quizzes in the DB
-            }
+                    DisplayScore = false
+                }
+            };
+        }
+
+        public int StoreQuiz(Quiz model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

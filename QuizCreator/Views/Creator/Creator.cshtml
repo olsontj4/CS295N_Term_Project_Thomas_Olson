@@ -17,20 +17,20 @@
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
-                <input asp-for="Quiz.Title" class="form-control" type="text" value="" placeholder="Enter a title..." />
-                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+                <input asp-for="@Model.Quiz.Title" class="form-control" type="text" value="" placeholder="Enter a title..." />
+                <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
 
                 <p class="form-label">Description:</p>
-                <input asp-for="Quiz.Description" class="form-control" type="text" value="" placeholder="Enter a description..." />
-                <span asp-validation-for="Quiz.Description" class="text-danger"></span>
+                <input asp-for="@Model.Quiz.Description" class="form-control" type="text" value="" placeholder="Enter a description..." />
+                <span asp-validation-for="@Model.Quiz.Description" class="text-danger"></span>
 
                 <p class="form-label">Type:</p>
-                <select asp-for="Quiz.Type" class="form-select">
+                <select asp-for="@Model.Quiz.Type" class="form-select">
                     <option value="" selected hidden>Select a quiz type...</option>
                     <option value="Trivia">Trivia</option>
                     <option disabled>Personality</option>
                 </select>
-                <span asp-validation-for="Quiz.Type" class="text-danger"></span>
+                <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
             </form>
@@ -41,20 +41,20 @@
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
-                <input asp-for="Quiz.Title" class="form-control" type="text" value="@Model.Quiz.Title" placeholder="Enter a title..." />
-                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+                <input asp-for="@Model.Quiz.Title" class="form-control" type="text" value="@Model.Quiz.Title" placeholder="Enter a title..." />
+                <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
 
                 <p class="form-label">Description:</p>
-                <input asp-for="Quiz.Description" class="form-control" type="text" value="@Model.Quiz.Description" placeholder="Enter a description..." />
-                <span asp-validation-for="Quiz.Description" class="text-danger"></span>
+                <input asp-for="@Model.Quiz.Description" class="form-control" type="text" value="@Model.Quiz.Description" placeholder="Enter a description..." />
+                <span asp-validation-for="@Model.Quiz.Description" class="text-danger"></span>
 
                 <p class="form-label">Type:</p>
-                <select asp-for="Quiz.Type" class="form-select">
+                <select asp-for="@Model.Quiz.Type" class="form-select">
                     <option value="" selected hidden>Select a quiz type...</option>
                     <option value="Trivia">Trivia</option>
                     <option disabled>Personality</option>
                 </select>
-                <span asp-validation-for="Quiz.Type" class="text-danger"></span>
+                <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
             </form>
