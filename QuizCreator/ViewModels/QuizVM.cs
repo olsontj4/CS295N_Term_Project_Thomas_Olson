@@ -5,7 +5,7 @@ namespace QuizCreator.ViewModels
     public class QuizVM
     {
         public Quiz? Quiz { get; set; }
-        public Dictionary<string, bool>? AnswerInputs { get; set; } = new();
+        public List<string>? AnswersInView { get; set; } = new();
         public List<string>? UserA { get; set; } = new();
         public string? AnswerInput { get; set; }
         public int Page { get; set; }

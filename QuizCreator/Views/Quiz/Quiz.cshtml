@@ -24,6 +24,10 @@
         <div>
             <h1>@Model.EndTitle</h1>
             <h3>@Model.EndMessage</h3>
+            @if (Model.Quiz.EndResult.DisplayScore == true)
+            {
+                <h3 class="text-success">Score: @Model.Score</h3>
+            }
             <a class="btn btn-primary" asp-controller="Quiz" asp-action="Index">Play More Quizzes!</a>
         </div>
     }
@@ -38,10 +42,10 @@
                     numAnswers = Model.UserA.Count();
                 }
                 int i = 0;
-                foreach (var a in @Model.AnswerInputs)
+                foreach (var a in @Model.AnswersInView)
                 {
-                    <input class="form-check-input" asp-for="@Model.AnswerInput" name="AnswerInput" type="radio" value="@a.Key" required>
-                    <label class="form-check-label" asp-for="@Model.AnswerInput">@a.Key</label>
+                    <input class="form-check-input" asp-for="@Model.AnswerInput" name="AnswerInput" type="radio" value="@a" required>
+                    <label class="form-check-label" asp-for="@Model.AnswerInput">@a</label>
                     <br />
                 }
                 foreach(var a in Model.UserA)
