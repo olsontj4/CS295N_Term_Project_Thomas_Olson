@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "Create a Quiz:";
 }
-@model QuizVM
+@model CreatorVM
 <div class="text-center">
     <h1>@ViewData["Title"]</h1>
     <hr />
@@ -13,7 +13,7 @@
 <article class="container">
     <div class="border-2 border-dark">
         @if (Model == null){
-            <form action="Creator" method="post">
+            <form asp-controller="Creator" asp-action="Creator" method="post">
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
@@ -31,13 +31,18 @@
                     <option disabled>Personality</option>
                 </select>
                 <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
+
+                <p class="form-label">Username:</p>
+                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" type="text" value="" placeholder="Enter a username..." />
+                <span asp-validation-for="@Model.Quiz.AppUser.UserName" class="text-danger"></span>
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
             </form>
         }
         else if (Model.Page == 0)
         {
-            <form action="Creator" method="post">
+            <form asp-controller="Creator" asp-action="Creator" method="post">
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
@@ -55,6 +60,11 @@
                     <option disabled>Personality</option>
                 </select>
                 <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
+
+                <p class="form-label">Username:</p>
+                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" type="text" value="" placeholder="Enter a username..." />
+                <span asp-validation-for="@Model.Quiz.AppUser.UserName" class="text-danger"></span>
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
             </form>

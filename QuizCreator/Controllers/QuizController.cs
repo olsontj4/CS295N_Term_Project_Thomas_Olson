@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using QuizCreator.Data;
 using QuizCreator.Models;
 using QuizCreator.Tools;
@@ -18,12 +17,25 @@ namespace QuizCreator.Controllers
         public IActionResult Index()
         {
             var quizzes = repo.GetAllQuizzes().Where(q => q.IsComplete == true).ToList();
-            return View(quizzes);
+            var searchVM = new SearchVM();
+            searchVM.Quizzes = quizzes;
+            return View(searchVM);
         }
-        public IActionResult Index(string search)
+        public IActionResult Search(SearchVM searchVM)
         {
-            var quizzes = repo.GetAllQuizzes().Where(q => q.IsComplete == true).ToList();
-            return View(quizzes);
+            if (searchVM.Search != null)
+            {
+                var quizzes = repo.GetAllQuizzes().Where(q => q.Title.Contains(searchVM.Search) || q.Description.Contains(searchVM.Search) || q.AppUser.UserName.Contains(searchVM.Search)).Where(q => q.IsComplete == true).ToList();
+                searchVM.Quizzes = quizzes;
+                return View("Index", searchVM);
+            }
+            else
+            {
+                var quizzes = repo.GetAllQuizzes().Where(q => q.IsComplete == true).ToList();
+                searchVM = new SearchVM();
+                searchVM.Quizzes = quizzes;
+                return View("Index", searchVM);
+            }
         }
         public IActionResult Quiz(int id)  //First page of quiz.
         {
@@ -49,7 +61,7 @@ namespace QuizCreator.Controllers
             foreach (var a in answers)
             {
 
-                quizVM.AnswerInputs.Add(a.AString, false);
+                quizVM.AnswersInView.Add(a.AString);
             }
             return View("Quiz", quizVM);
         }

@@ -10,11 +10,12 @@
     <h1>@ViewData["Title"]:</h1>
     <hr />
 </div>
-<div class="container">
-    <form asp-controller="Quiz" asp-action="Quiz" asp-route-id="Index.Search">
-        <input class="form-control mr-sm-2" type="search" name="name" value="" placeholder="Search..." />
-        <a class="btn btn-outline-primary" asp-controller="Quiz" asp-action="Quiz" asp-route-id="Index.Search" type="submit"></a>
-        <br />
+<div class="container mb-3">
+    <form asp-controller="Quiz" asp-action="Search">
+        <div class="input-group">
+            <input class="form-control mr-sm-2" type="search" name="Search" value="" placeholder="Search..." id="Search" aria-label="Search..." aria-describedby="SearchButton" />
+            <button class="btn btn-outline-primary" type="submit" id="SearchButton">Submit</button>
+        </div>
     </form>
 </div>
 <article class="container-fluid" style="min-height: 200px;">
