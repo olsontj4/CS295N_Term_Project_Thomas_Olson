@@ -6,18 +6,18 @@ namespace QuizCreator.Models
     {
         public int Id { get; set; }
         public string? ImageUrl { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [StringLength(100)]
         public string Title { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [StringLength(200)]
         public string Description { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string Type { get; set; }
-        public List<Question>? Questions { get; set; }
+        public List<Question>? Questions { get; set; } = new();
         public EndResult? EndResult { get; set; }
         [Required]
-        public AppUser? AppUser { get; set; }
+        public AppUser? AppUser { get; set; } = new();
         public DateTime? Date { get; set; }
         public bool IsComplete { get; set; }
     }

@@ -19,13 +19,13 @@ namespace QuizCreator.Models
     public class EndResultsTitle
     {
         public int Id { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string EndResultString { get; set; }
     }
     public class EndResultsMessage
     {
         public int Id { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string EndResultString { get; set; }
     }
 }

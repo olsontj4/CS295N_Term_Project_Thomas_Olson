@@ -5,7 +5,7 @@ namespace QuizCreator.Models
     public class AppUser
     {
         public int Id { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string UserName { get; set; }
     }
 }
