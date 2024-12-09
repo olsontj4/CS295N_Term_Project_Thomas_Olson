@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/QuizCreator/appsettings.Development.json
+/QuizCreator/appsettings.Development.json
+/QuizCreator/appsettings.Development.json
+/QuizCreator/appsettings.Development.json
+/QuizCreator/appsettings.Production.json
