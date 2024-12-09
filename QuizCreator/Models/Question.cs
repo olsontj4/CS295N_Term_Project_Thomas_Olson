@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace QuizCreator.Models
 {
@@ -12,7 +13,7 @@ namespace QuizCreator.Models
         [Required]
         public List<A> A { get; set; } = new();
         [Required]
-        public List<AKey> AKey { get; set; } = new();
+        public List<AKey>? AKey { get; set; } = new();
     }
     public class A
     {
@@ -22,8 +23,13 @@ namespace QuizCreator.Models
     }
     public class AKey
     {
+        private bool aKeyBool;
         public int Id { get; set; }
         [Required]
-        public bool AKeyBool { get; set; }
+        public bool AKeyBool { get; set; } = false;
+        /*{
+            get { return aKeyBool; }
+            set { aKeyBool = value ?? false; }
+        }*/
     }
 }

@@ -14,7 +14,7 @@ namespace QuizCreator.Models
         public string Description { get; set; }
         [Required(AllowEmptyStrings = false)]
         public string Type { get; set; }
-        public List<Question>? Questions { get; set; }
+        public List<Question>? Questions { get; set; } = new();
         public EndResult? EndResult { get; set; }
         [Required]
         public AppUser? AppUser { get; set; } = new();

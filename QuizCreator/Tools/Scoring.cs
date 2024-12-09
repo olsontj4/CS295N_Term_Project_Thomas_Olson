@@ -13,7 +13,7 @@ namespace QuizCreator.Tools
                 {
                     if (quizVM.UserA[i] == quizVM.Quiz.Questions[i].A[j].AString)
                     {
-                        aKey.Add(quizVM.Quiz.Questions[i].AKey[j].AKeyBool);
+                        aKey.Add((bool)quizVM.Quiz.Questions[i].AKey[j].AKeyBool);
                     }
                 }
             }
