@@ -13,10 +13,12 @@ namespace QuizCreator.Data
                 AppUser user2 = new AppUser { UserName = "Than" };
                 AppUser logan = new AppUser { UserName = "Logan" };
                 AppUser chatGPT = new AppUser { UserName = "ChatGPT" };
+                AppUser user5 = new AppUser() { UserName = "Dylan" };
                 context.AppUsers.Add(user1);  // Queue up user objects to be saved to the DB
                 context.AppUsers.Add(user2);
                 context.AppUsers.Add(logan);
                 context.AppUsers.Add(chatGPT);
+                context.AppUsers.Add(user5);
                 context.SaveChanges();  // Saving adds UserId to User objects
                 Quiz quiz1 = new Quiz()
                 {
@@ -680,10 +682,324 @@ namespace QuizCreator.Data
                         DisplayScore = true
                     }
                 };
+                Quiz quiz5 = new Quiz()
+                {
+                    Id = 5,
+                    Title = "Are you procrastinating right now?",
+                    Description = "Do you really have time for this?",
+                    Type = "Trivia",
+                    AppUser = user5,
+                    Date = DateTime.Parse("12/09/2024"),
+                    IsComplete = true,
+                    Questions = new List<Question>()
+                    {
+                        new Question()
+                        {
+                            Q = "Do you have homework to do?",
+                            A = new()
+                            {
+                                new() { AString = "Yes" },
+                                new() { AString = "No" },
+                                new() { AString = "I am a 57 year old man. I graduated years ago." }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Is your room cleaned?",
+                            A = new()
+                            {
+                                new() { AString = "Yes" },
+                                new() { AString = "No" },
+                                new() { AString = "Who wants to know? You aren’t my mom >:(" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "How is your to-do list looking?",
+                            A = new()
+                            {
+                                new() { AString = "Long... never ending...." },
+                                new() { AString = "It’s completed!" },
+                                new() { AString = "I don’t write to-do lists, I just make mental notes and wing it." },
+                                new() { AString = "It’s looking kinda hot...." }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Are you doom scrolling?",
+                            A = new()
+                            {
+                                new() { AString = "Maybe...." },
+                                new() { AString = "I feel attacked" },
+                                new() { AString = "I would never" },
+                                new() { AString = "What year is it?" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Go do your work",
+                            A = new()
+                            {
+                                new() { AString = "go do your work" },
+                                new() { AString = "go do your work" },
+                                new() { AString = "go do your work" },
+                                new() { AString = "go do your work" },
+                                new() { AString = "go do your work" },
+                                new() { AString = "Go do your work" },
+                                new() { AString = "go do your work" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "stop looking for a dopamine hit and go get ur shit done",
+                            A = new()
+                            {
+                                new() { AString = "FINE" },
+                                new() { AString = "FINE" },
+                                new() { AString = "YES I AM DOING MY WORK NOW" },
+                                new() { AString = "OK" },
+                                new() { AString = "IT IS THE ONLY OPTION LEFT" },
+                                new() { AString = "please let me leave, I promise ill do my work" },
+                                new() { AString = "I’m sorry I skipped my Spanish lessons, I’ll do them all I promise, please just let my family go ;0;" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true }
+                            }
+                        }
+                    },
+                    EndResult = new EndResult()
+                    {
+                        EndTitles = new()
+                        {
+                            new() { EndResultString = "good! stop procrastinating ^^" }
+                        },
+                        EndMessages = new()
+                        {
+                            new() { EndResultString = "WHY ARE YOU STILL HERE" }
+                        },
+                        Score = 0,
+                        DisplayScore = true
+                    }
+                };
+                Quiz quiz6 = new Quiz()
+                {
+                    Id = 6,
+                    Title = "Insect Trivia",
+                    Description = "Are you a true insect expert? Take this quiz to find out!",
+                    Type = "Trivia",
+                    AppUser = user2,
+                    Date = DateTime.Parse("12/04/2024"),
+                    IsComplete = true,
+                    Questions = new List<Question>()
+                    {
+                        new Question()
+                        {
+                            Q = "How many true legs do caterpillars have?",
+                            A = new()
+                            {
+                                new() { AString = "5" },
+                                new() { AString = "11" },
+                                new() { AString = "6"},
+                                new() { AString = "16" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "What kind of insects are weevils?",
+                            A = new()
+                            {
+                                new() { AString = "Bees" },
+                                new() { AString = "Dragonflies" },
+                                new() { AString = "Moths" },
+                                new() { AString = "Beetles" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Which one of these isn’t a type of insect?",
+                            A = new()
+                            {
+                                new() { AString = "Assassin Bug" },
+                                new() { AString = "Centipede" },
+                                new() { AString = "Katydid" },
+                                new() { AString = "Stick Bug" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "What is the smallest insect in the world?",
+                            A = new()
+                            {
+                                new() { AString = "Aphid" },
+                                new() { AString = "Fairyfly" },
+                                new() { AString = "Midget Moth" },
+                                new() { AString = "Flea" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Which of these orders fall under the Dictyoptera superorder?",
+                            A = new()
+                            {
+                                new() { AString = "Coleoptera" },
+                                new() { AString = "Blattodea" },
+                                new() { AString = "Isoptera" },
+                                new() { AString = "Mantodea" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = true }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "True or false: Luna moths can live up to 2 months",
+                            A = new()
+                            {
+                                new() { AString = "True" },
+                                new() { AString = "False" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = true }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Finally, out of these three, which flower are ladybugs most attracted to?",
+                            A = new()
+                            {
+                                new() { AString = "Marigolds" },
+                                new() { AString = "Roses" },
+                                new() { AString = "Carnations" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = false },
+                                new() { AKeyBool = false }
+                            }
+                        },
+                        new Question()
+                        {
+                            Q = "Have a free point (I accidentally added another question)!",
+                            A = new()
+                            {
+                                new() { AString = "Woah!" },
+                                new() { AString = "Wow!" },
+                                new() { AString = "Yeah!" },
+                                new() { AString = "Yippee!" }
+                            },
+                            AKey = new()
+                            {
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = true },
+                                new() { AKeyBool = true }
+                            }
+                        }
+                    },
+                    EndResult = new EndResult()
+                    {
+                        EndTitles = new()
+                        {
+                            new() { EndResultString = "Insect Expert" },
+                            new() { EndResultString = "Insect Enthusiast" },
+                            new() { EndResultString = "Insect Explorer" },
+                            new() { EndResultString = "Insect Newbie" }
+                        },
+                                        EndMessages = new()
+                        {
+                            new() { EndResultString = "Wow, you really know your insects!" },
+                            new() { EndResultString = "Nice job! With a little more research, you could easily become an expert." },
+                            new() { EndResultString = "You’re off to a great start! You’ve got a good understanding of insects, but there’s still so much more to discover." },
+                            new() { EndResultString = "Looks like you’re just starting your journey into the insect world! Make sure to keep studying!" }
+                        },
+                        Score = 0,
+                        DisplayScore = true
+                    },
+                };
                 context.Quizzes.Add(quiz1);  // queues up a quiz to be added to the DB
                 context.Quizzes.Add(quiz2);
                 context.Quizzes.Add(bestquiz);
                 context.Quizzes.Add(quiz4);
+                context.Quizzes.Add(quiz5);
+                context.Quizzes.Add(quiz6);
                 context.SaveChanges(); // stores all the quizzes in the DB
             }
         }

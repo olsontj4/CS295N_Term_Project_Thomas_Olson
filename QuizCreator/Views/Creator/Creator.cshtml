@@ -79,7 +79,7 @@
                     for (var i = 0; i < Model.Quiz.EndResult.EndTitles.Count; i++)
                     {
                         <div class="input-group mb-3">
-                            <input asp-for="@Model.Quiz.EndResult.EndTitles[i].EndResultString" name="Quiz.EndResult.EndTitles[@i].EndResultString" class="form-control" type="text" value="" placeholder="Enter your end result..." required>
+                            <input asp-for="@Model.Quiz.EndResult.EndTitles[i].EndResultString" name="Quiz.EndResult.EndTitles[@i].EndResultString" class="form-control" type="text" value="@Model.Quiz.EndResult.EndTitles[i].EndResultString" placeholder="Enter your end result..." required>
                         </div>
                         <span asp-validation-for="@Model.Quiz.EndResult.EndTitles[i].EndResultString" class="text-danger"></span>
                     }
@@ -87,7 +87,7 @@
                     for (var i = 0; i < Model.Quiz.EndResult.EndTitles.Count; i++)
                     {
                         <div class="input-group mb-3">
-                            <input asp-for="@Model.Quiz.EndResult.EndMessages[i].EndResultString" name="Quiz.EndResult.EndMessages[@i].EndResultString" class="form-control" type="text" value="" placeholder="Enter your end result message..." required>
+                            <input asp-for="@Model.Quiz.EndResult.EndMessages[i].EndResultString" name="Quiz.EndResult.EndMessages[@i].EndResultString" class="form-control" type="text" value="@Model.Quiz.EndResult.EndMessages[i].EndResultString" placeholder="Enter your end result message..." required>
                         </div>
                         <span asp-validation-for="@Model.Quiz.EndResult.EndMessages[i].EndResultString" class="text-danger"></span>
                     }
