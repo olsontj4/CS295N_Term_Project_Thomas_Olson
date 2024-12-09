@@ -11,7 +11,7 @@ using QuizCreator.Data;
 namespace QuizCreator.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241209042312_Initial")]
+    [Migration("20241209055019_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
