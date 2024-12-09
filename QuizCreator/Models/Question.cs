@@ -7,7 +7,7 @@ namespace QuizCreator.Models
     {
         public int Id { get; set; }
         public string? ImageUrl { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string Q {  get; set; }
         [Required]
         public List<A> A { get; set; } = new();
@@ -17,7 +17,7 @@ namespace QuizCreator.Models
     public class A
     {
         public int Id { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string AString { get; set; }
     }
     public class AKey

@@ -12,20 +12,21 @@
 </div>
 <article class="container">
     <div class="border-2 border-dark">
-        @if (Model == null){
-            <form asp-controller="Creator" asp-action="Creator" method="post">
+        @if (Model.Quiz == null){
+            <form asp-controller="Creator" asp-action="CreatorStart">
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
-                <input asp-for="@Model.Quiz.Title" class="form-control" type="text" value="" placeholder="Enter a title..." />
+                <input asp-for="@Model.Quiz.Title" class="form-control" name="Quiz.Title" type="text" value="" placeholder="Enter a title..." required/>
                 <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
 
                 <p class="form-label">Description:</p>
-                <input asp-for="@Model.Quiz.Description" class="form-control" type="text" value="" placeholder="Enter a description..." />
+                <input asp-for="@Model.Quiz.Description" class="form-control" name="Quiz.Description" type="text" value="" placeholder="Enter a description..." required />
                 <span asp-validation-for="@Model.Quiz.Description" class="text-danger"></span>
 
                 <p class="form-label">Type:</p>
-                <select asp-for="@Model.Quiz.Type" class="form-select">
+                <select asp-for="@Model.Quiz.Type" class="form-select" name="Quiz.Type" required>
                     <option value="" selected hidden>Select a quiz type...</option>
                     <option value="Trivia">Trivia</option>
                     <option disabled>Personality</option>
@@ -33,28 +34,28 @@
                 <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
 
                 <p class="form-label">Username:</p>
-                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" type="text" value="" placeholder="Enter a username..." />
+                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" name="Quiz.AppUser.UserName" type="text" value="" placeholder="Enter a username..." required />
                 <span asp-validation-for="@Model.Quiz.AppUser.UserName" class="text-danger"></span>
-                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
             </form>
         }
         else if (Model.Page == 0)
         {
-            <form asp-controller="Creator" asp-action="Creator" method="post">
+            <form asp-controller="Creator" asp-action="CreatorStart">
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <!--p class="form-label">Image:</p>
                 <input class="form-control" type="image" value="" /-->
                 <p class="form-label">Title:</p>
-                <input asp-for="@Model.Quiz.Title" class="form-control" type="text" value="@Model.Quiz.Title" placeholder="Enter a title..." />
+                <input asp-for="@Model.Quiz.Title" class="form-control" name="Quiz.Title" type="text" value="@Model.Quiz.Title" placeholder="Enter a title..." required />
                 <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
 
                 <p class="form-label">Description:</p>
-                <input asp-for="@Model.Quiz.Description" class="form-control" type="text" value="@Model.Quiz.Description" placeholder="Enter a description..." />
+                <input asp-for="@Model.Quiz.Description" class="form-control" name="Quiz.Description" type="text" value="@Model.Quiz.Description" placeholder="Enter a description..." required />
                 <span asp-validation-for="@Model.Quiz.Description" class="text-danger"></span>
 
                 <p class="form-label">Type:</p>
-                <select asp-for="@Model.Quiz.Type" class="form-select">
+                <select asp-for="@Model.Quiz.Type" class="form-select" name="Quiz.Type" required>
                     <option value="" selected hidden>Select a quiz type...</option>
                     <option value="Trivia">Trivia</option>
                     <option disabled>Personality</option>
@@ -62,11 +63,67 @@
                 <span asp-validation-for="@Model.Quiz.Type" class="text-danger"></span>
 
                 <p class="form-label">Username:</p>
-                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" type="text" value="" placeholder="Enter a username..." />
+                <input asp-for="@Model.Quiz.AppUser.UserName" class="form-control" name="Quiz.AppUser.UserName" type="text" value="" placeholder="Enter a username..." required />
                 <span asp-validation-for="@Model.Quiz.AppUser.UserName" class="text-danger"></span>
-                <p class="text-danger">@ViewBag.ErrorMessage</p>
                 <br />
                 <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
+            </form>
+        }
+        else if (Model.Quiz.IsComplete == true)
+        {
+
+        }
+        else
+        {
+            <form asp-controller="Creator" asp-action="CreatorQuestion">
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
+                <!--p class="form-label">Image:</p>
+                <input class="form-control" type="image" value="" /-->
+                <p class="form-label">Question:</p>
+                <input asp-for="@Model.Quiz.Questions[Model.Page - 1].Q" class="form-control" name="Quiz.Questions[@(Model.Page - 1)].Q" type="text" value="" placeholder="Enter your question..." required />
+                <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
+
+                <p class="form-label">Answers:</p>
+                @if (Model.Quiz.Questions != null)
+                {
+                    for (var i = 0; i < Model.Quiz.Questions[Model.Page - 1].A.Count; i++)
+                    {
+                        <input asp-for="@Model.Quiz.Questions[Model.Page - 1].A[i].AString" class="form-control" name="Quiz.Questions[@(Model.Page - 1)].A[@i].AString" type="text" value="" placeholder="Enter your answer..." required />
+                        <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
+                    }
+                }
+                else
+                {
+                    <input asp-for="@Model.Quiz.Questions[Model.Page - 1].A[0].AString" class="form-control" name="Quiz.Questions[@(Model.Page - 1)].A[0].AString" type="text" value="" placeholder="Enter your answer..." required />
+                    <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
+                    <input asp-for="@Model.Quiz.Questions[Model.Page - 1].A[1].AString" class="form-control" name="Quiz.Questions[@(Model.Page - 1)].A[1].AString" type="text" value="" placeholder="Enter your answer..." required />
+                    <span asp-validation-for="@Model.Quiz.Title" class="text-danger"></span>
+                }
+                <button name="AddAnswer" class="btn btn-outline-primary" type="submit" value="true">Add answer</button>
+                <br />
+                <button name="Page" class="btn btn-outline-dark float-start float-sm-end" type="submit" value="1">Next question -></button>
+                <input name="Quiz.AppUser.UserName" value="@Model.Quiz.AppUser.UserName" hidden />
+                <input name="Quiz.Title" value="@Model.Quiz.Title" hidden />
+                <input name="Quiz.Description" value="@Model.Quiz.Description" hidden />
+                <input name="Quiz.Type" value="@Model.Quiz.Type" hidden />
+                @if (Model.Quiz.Questions != null)
+                {
+                    for (var i = 0; i < Model.Quiz.Questions.Count - 1; i++)
+                    {
+                        <input name="Quiz.Questions[@i]" value="@Model.Quiz.Questions[i]" hidden />
+                        <input name="Quiz.Questions[@i].Q" value="@Model.Quiz.Questions[i].Q" hidden />
+                        //<input name="Quiz.Questions[@(Model.Page - 1)].Q" value="@q.A" hidden />
+                        @if (Model.Quiz.Questions[i].A != null)
+                        {
+                            for (var j = 0; j < Model.Quiz.Questions[i].A.Count; j++)
+                            {
+                                <input name="Quiz.Questions[@i].A[@j]" value="@Model.Quiz.Questions[i].A[j]" hidden />
+                                <input name="Quiz.Questions[@i].A[@j].AString" value="@Model.Quiz.Questions[i].A[j].AString" hidden />
+                                //<input name="Quiz.Questions[@(Model.Page - 1)].Q" value="@q.A" hidden />
+                            }
+                        }
+                    }
+                }
             </form>
         }
     </div>

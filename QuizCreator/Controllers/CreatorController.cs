@@ -14,21 +14,65 @@ namespace QuizCreator.Controllers
         }
         public IActionResult Creator()
         {
+            var creatorVM = new CreatorVM();
+            creatorVM.Page = 0;
             ViewBag.ErrorMessage = "Quiz Creator is currently unavailable.";
-            return View();
+            return View(creatorVM);
         }
-        [HttpPost]
-        public IActionResult Creator(CreatorVM quiz)
+        public IActionResult CreatorStart(CreatorVM creatorVM)
         {
-            if (!ModelState.IsValid)
+            if (creatorVM.Quiz != null && ModelState.IsValid )  //Success condition.
             {
-                //ViewBag.ErrorMessage = ModelState.Where(e => e.Value.Errors.Count > 0).ToList()[0].Value.Errors[0].ErrorMessage.ToString();
                 ViewBag.ErrorMessage = "Quiz Creator is currently unavailable.";
-                //quiz.Page--;
-                return View("Creator"/*, quiz*/);
+                return View("Creator", creatorVM);
+            }
+            else  //Failure condition.
+            {
+                if (ModelState.Where(e => e.Value.Errors.Count > 0).ToList()[0].Value.Errors[0].ErrorMessage.ToString() != null)
+                {
+                    ViewBag.ErrorMessage = ModelState.Where(e => e.Value.Errors.Count > 0).ToList()[0].Value.Errors[0].ErrorMessage.ToString();
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Error saving quiz.";
+                }
+                creatorVM.Page = 0;
+                return View("Creator", creatorVM);
+            }
+        }
+        public IActionResult CreatorQuestion(CreatorVM creatorVM)
+        {
+            if(creatorVM.AddAnswer == true)
+            {
+                creatorVM.Quiz.Questions[creatorVM.Page].A.Add(new());
+                creatorVM.AddAnswer = false;
+                creatorVM.Page = creatorVM.Quiz.Questions.Count;
+                return View("Creator", creatorVM);
+            }
+            if (creatorVM.Quiz.Questions[creatorVM.Page - 1] != null && ModelState.IsValid)  //Success condition.
+            {
+                ViewBag.ErrorMessage = "Quiz Creator is currently unavailable.";
+                creatorVM.Quiz.Questions.Add(new());
+                creatorVM.Quiz.Questions[creatorVM.Page].A.Add(new());
+                creatorVM.Quiz.Questions[creatorVM.Page].A.Add(new());
+                creatorVM.Page = creatorVM.Quiz.Questions.Count;
+                return View("Creator", creatorVM);
+            }
+            else  //Failure condition.
+            {
+                if (ModelState.Where(e => e.Value.Errors.Count > 0).ToList()[0].Value.Errors[0].ErrorMessage.ToString() != null)
+                {
+                    ViewBag.ErrorMessage = ModelState.Where(e => e.Value.Errors.Count > 0).ToList()[0].Value.Errors[0].ErrorMessage.ToString();
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Error saving quiz.";
+                }
+                creatorVM.Page = creatorVM.Quiz.Questions.Count;
+                return View("Creator", creatorVM);
             }
             return View("Creator"/*, quiz*/);
-            repo.StoreQuiz(quiz.Quiz);  //TODO: Write code to store quiz in DB.
+            repo.StoreQuiz(creatorVM.Quiz);  //TODO: Write code to store quiz in DB.
             return View();
         }
     }
