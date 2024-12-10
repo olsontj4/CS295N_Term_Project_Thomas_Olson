@@ -42,7 +42,6 @@ namespace QuizCreator.Controllers
             var quiz = repo.GetQuizById(id);
             QuizVM vm = new QuizVM();
             vm.Quiz = quiz;
-            vm.UserA.Add("");
             return View(vm);
         }
         public IActionResult QuizQuestion([FromForm]QuizVM quizVM)  //Each question in quiz.

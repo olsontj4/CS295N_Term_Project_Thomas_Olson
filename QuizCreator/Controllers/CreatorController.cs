@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Azure;
 using QuizCreator.Data;
 using QuizCreator.Models;
 using QuizCreator.ViewModels;
