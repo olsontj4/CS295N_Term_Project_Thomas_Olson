@@ -9,16 +9,26 @@ namespace QuizCreator.Data
         {
             if (!context.Quizzes.Any())  // this is to prevent adding duplicate data
             {
-                AppUser user1 = new AppUser { UserName = "Thomasj041" };  // Create User objects
-                AppUser user2 = new AppUser { UserName = "Than" };
+                AppUser thomasj041 = new AppUser { UserName = "Thomasj041" };  // Create User objects
+                AppUser than = new AppUser { UserName = "Than" };
                 AppUser logan = new AppUser { UserName = "Logan" };
                 AppUser chatGPT = new AppUser { UserName = "ChatGPT" };
-                AppUser user5 = new AppUser() { UserName = "Dylan" };
-                context.AppUsers.Add(user1);  // Queue up user objects to be saved to the DB
-                context.AppUsers.Add(user2);
+                AppUser dylan = new AppUser() { UserName = "Dylan" };
+                AppUser thomasJefferson = new AppUser() { UserName = "Thomas Jefferson" };
+                AppUser jonathonMath = new AppUser() { UserName = "Jonathon Math" };
+                AppUser profBird = new AppUser() { UserName = "ProfBird" };
+                AppUser max = new AppUser() { UserName = "max" };
+                AppUser pikachew3 = new AppUser() { UserName = "Pikachew3" };
+                context.AppUsers.Add(thomasj041);  // Queue up user objects to be saved to the DB
+                context.AppUsers.Add(than);
                 context.AppUsers.Add(logan);
                 context.AppUsers.Add(chatGPT);
-                context.AppUsers.Add(user5);
+                context.AppUsers.Add(dylan);
+                context.AppUsers.Add(thomasJefferson);
+                context.AppUsers.Add(jonathonMath);
+                context.AppUsers.Add(profBird);
+                context.AppUsers.Add(max);
+                context.AppUsers.Add(pikachew3);
                 context.SaveChanges();  // Saving adds UserId to User objects
                 Quiz quiz1 = new Quiz()
                 {
@@ -26,7 +36,7 @@ namespace QuizCreator.Data
                     Title = "Are you in the Kool Kids Klub?",
                     Description = "Take this quiz to figure out if you're a true Kool Kid!",
                     Type = "Trivia",
-                    AppUser = user1,
+                    AppUser = thomasj041,
                     Date = DateTime.Parse("12/04/2024"),
                     IsComplete = true,
                     Questions = new List<Question>()
@@ -79,7 +89,7 @@ namespace QuizCreator.Data
                     Title = "Are you Than?",
                     Description = "Take this quiz to figure out if you're a certified Than!",
                     Type = "Trivia",
-                    AppUser = user2,
+                    AppUser = than,
                     Date = DateTime.Parse("12/06/2024"),
                     IsComplete = true,
                     Questions = new List<Question>()
@@ -688,7 +698,7 @@ namespace QuizCreator.Data
                     Title = "Are you procrastinating right now?",
                     Description = "Do you really have time for this?",
                     Type = "Trivia",
-                    AppUser = user5,
+                    AppUser = dylan,
                     Date = DateTime.Parse("12/09/2024"),
                     IsComplete = true,
                     Questions = new List<Question>()
@@ -830,7 +840,7 @@ namespace QuizCreator.Data
                     Title = "Insect Trivia",
                     Description = "Are you a true insect expert? Take this quiz to find out!",
                     Type = "Trivia",
-                    AppUser = user2,
+                    AppUser = than,
                     Date = DateTime.Parse("12/04/2024"),
                     IsComplete = true,
                     Questions = new List<Question>()
@@ -994,6 +1004,198 @@ namespace QuizCreator.Data
                         DisplayScore = true
                     },
                 };
+                Quiz quiz7 = new Quiz()
+                {
+                    Id = 7,
+                    Title = "Does Thomas deserve an A?",
+                    Description = "Or maybe even an A+... 👀",
+                    Type = "Trivia",
+                    AppUser = thomasJefferson,
+                    Date = DateTime.Parse("2024-12-09T18:13:42.913606"),
+                    IsComplete = true,
+                    Questions = new List<Question>()
+    {
+        new Question()
+        {
+            Q = "Did Thomas do his homework?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "Wait, that was due today?" }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Did Thomas show up to class on time?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Did Thomas make a website?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "Hi, I’m the answer for question 2! Oh shoot, I showed up too late..." }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Can you navigate on this website?",
+            A = new()
+            {
+                new() { AString = "Navigate to answer: Yes!" },
+                new() { AString = "Navigate to answer: No." }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Is it running on Azure?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "Then maybe you should go catch it." }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Wow, this quiz seems to be going very well.",
+            A = new()
+            {
+                new() { AString = "All because Thomas did a good job making it!" },
+                new() { AString = "This is a very cool idea for a website, with good execution." },
+                new() { AString = "No, it’s really not." },
+                new() { AString = "Only because 🥺‘s taking it." }
+            },
+            AKey = new()
+            {
+                new() { Id = 178, AKeyBool = true },
+                new() { Id = 179, AKeyBool = true },
+                new() { Id = 180, AKeyBool = false },
+                new() { Id = 181, AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Id = 55,
+            ImageUrl = null,
+            Q = "Does the quiz creation part of the site work?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "Oops, I didn’t mean to make this answer." },
+                new() { AString = "Wait, how do I delete it?" },
+                new() { AString = "Wait, there’s no delete button?" },
+                new() { AString = "Maybe I’ll just edit the quiz later." },
+                new() { AString = "I don’t see a button for that either!" },
+                new() { AString = "Maybe it’s under my account." },
+                new() { AString = "Let me just go to where it says Login..." },
+                new() { AString = "Wait, that’s not even a button! You can’t even click on it, its just text!" },
+                new() { AString = "He really thought we wouldn’t notice..." },
+                new() { AString = "I can’t get rid of any of these, help!" },
+                new() { AString = "HELP ME" },
+                new() { AString = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" },
+                new() { AString = "​" },
+                new() { AString = "​" },
+                new() { AString = "​" },
+                new() { AString = "​" },
+                new() { AString = "​" }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false }
+            }
+        },
+        new Question()
+        {
+            Q = "Was Thomas a good boy?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "Wait, Thomas is a boy?" },
+                new() { AString = "Aww, who’s a good boy? Does he want a treat? Here boy, come get it!" }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false },
+                new() { AKeyBool = true }
+            }
+        },
+        new Question()
+        {
+            Q = "Is this quiz functioning?",
+            A = new()
+            {
+                new() { AString = "Yes!" },
+                new() { AString = "No." },
+                new() { AString = "What quiz?" }
+            },
+            AKey = new()
+            {
+                new() { AKeyBool = true },
+                new() { AKeyBool = false },
+                new() { AKeyBool = false }
+            }
+        }
+    }
+                };
+
                 context.Quizzes.Add(quiz1);  // queues up a quiz to be added to the DB
                 context.Quizzes.Add(quiz2);
                 context.Quizzes.Add(bestquiz);
